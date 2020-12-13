@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<h1>Your PWA Sample</h1>
+
+<p>Here will print all data ...</p>
+<p id="data"></p>
+
+<button onclick="alert(shohozPWA.getAccessToken());"> Get Access Token</button> <br />
+<button onclick="alert(shohozPWA.getIAMAccessToken());"> Get IAM Access Token</button><br />
+<button onclick="alert(shohozPWA.getAccessTokenByRefreshToken());"> Get Access Token by RefreshToken</button><br />
+<button onclick="alert(shohozPWA.getIAMAccessTokenByRefreshToken());"> Get IAM Access Token by RefreshToken</button><br />
+<button onclick="alert(shohozPWA.setLanguage('bn'));"> Set Bangla Language</button><br />
+<button onclick="alert(shohozPWA.setLanguage('en'));"> Set Eng Language</button><br />
+<button onclick="alert(shohozPWA.getLanguage());"> Get Language</button><br />
+<button onclick="alert(shohozPWA.getCurrentLocation());"> Get Current Location</button><br />
+
+<!-- <script src="jsbridge.js"></script> -->
+<script type="text/javascript">
+	/*!
+* MobileJSBridge.js
+* v0 - 2020-12-02
+*
+* Created by: Tarek Mahmud Apu <tarek.mahmud@shohoz.com,apu.eee@gmail.com>
+* Contributors:
+*/
+// var SuperApp = SuperApp || {
+// 	getAccessToken : function () {
+// 		return "dummy token oiuiuuou";
+// 	}
+// };
+
+(function( window, document, SuperApp ) {
+	'use strict';
+
+	if(!window) {
+        throw "Global Window object is not available.";
+    }
+
+    if(!document) {
+        throw "Global document object is not available.";
+    }
+
+    if(!SuperApp) {
+        throw "shohoz SuperApp bridge is not available.";
+    }
+
+
+	window.shohozPWA = {
+
+    	setSuperAppData: function (appData) {
+    		document.getElementById("data").innerHTML = JSON.stringify(appData);
+    	},
+
+    	getAccessToken : function () {
+    		return SuperApp.getAccessToken();
+    	},
+
+    	getIAMAccessToken : function () {
+    		return SuperApp.getIAMAccessToken();
+    	},
+
+    	getAccessTokenByRefreshToken : function () {
+    		return SuperApp.getAccessTokenByRefreshToken();
+    	},
+
+    	getIAMAccessTokenByRefreshToken : function () {
+    		return SuperApp.getIAMAccessTokenByRefreshToken();
+    	},
+
+    	getCurrentLocation : function() {
+    		return SuperApp.getCurrentLocation();
+    	},
+
+    	getLanguage : function () {
+    		return SuperApp.getLanguage();
+    	},
+
+    	setLanguage : function (lang ) {
+    		return SuperApp.setLanguage(lang);
+    	}
+
+    };
+
+})( this, document, SuperApp );
+
+// shohozPWA.setSuperAppData({
+// 			"app_version" : "dfsf"
+// });
+</script>
+</body>
+</html>

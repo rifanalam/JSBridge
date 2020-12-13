@@ -4,17 +4,12 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.webkit.*
 
-class JSBridgeActivity : BaseJSBridgeActivity() {
+private const val TAG = "JSBridgeActivity"
+
+class MainJSBridgeActivity : BaseJSBridgeActivity() {
+
     var webSettings: WebSettings? = null
     lateinit var webView: WebView
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_j_s_bridge)
-//        webView = findViewById(R.id.webView)
-//        webView
-//        initUI()
-//        setUpListener()
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +38,8 @@ class JSBridgeActivity : BaseJSBridgeActivity() {
 
     fun setUpListener() {
         webView.addJavascriptInterface(this, "SuperApp")
-        webView.setWebViewClient(SuperAppPWAClient())
-        webView.setWebChromeClient(object : WebChromeClient() {
+        webView.webViewClient = SuperAppPWAClient()
+        webView.webChromeClient = object : WebChromeClient() {
             //Other methods for your WebChromeClient here, if needed..
             override fun onJsAlert(
                 view: WebView,
@@ -54,12 +49,12 @@ class JSBridgeActivity : BaseJSBridgeActivity() {
             ): Boolean {
                 return super.onJsAlert(view, url, message, result)
             }
-        })
+        }
     }
 
     inner class SuperAppPWAClient : WebViewClient() {
         override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-/*            if ("dfoodpwa.shohoz.com".equals(Uri.parse(url).getHost())) {
+/*            if ("yourweb.com".equals(Uri.parse(url).getHost())) {
                 // This is my website, so do not override; let my WebView load the page
                 return false;
             }
@@ -88,7 +83,4 @@ class JSBridgeActivity : BaseJSBridgeActivity() {
         }
     }
 
-    companion object {
-        private const val TAG = "JSBridgeActivity"
-    }
 }

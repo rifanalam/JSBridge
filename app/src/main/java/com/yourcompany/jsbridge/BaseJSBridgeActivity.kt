@@ -10,22 +10,23 @@ import java.util.*
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
 
-public abstract class BaseJSBridgeActivity : AppCompatActivity() {
+private const val TAG = "BaseJSBridgeActivity"
+abstract class BaseJSBridgeActivity : AppCompatActivity() {
     @get:JavascriptInterface
     val accessToken: String
-        get() = "preferenceUtility.getKey(AppConstants.PREF_ACCESS_TOKEN)"
+        get() = "Here Your Object"
 
     @get:JavascriptInterface
     val iAMAccessToken: String
-        get() = "preferenceUtility.getKey(AppConstants.PREF_IAM_ACCESS_TOKEN)"
+        get() = "Here Your Object"
 
     @get:JavascriptInterface
     val accessTokenByRefreshToken: String
-        get() = "preferenceUtility.getKey(refresh_token)"
+        get() = "Here Your Object"
 
     @get:JavascriptInterface
     val iAMAccessTokenByRefreshToken: String
-        get() = "preferenceUtility.getKey(AppConstants.PREF_IAM_ACCESS_TOKEN)"
+        get() = "Here Your Object"
 
     @get:JavascriptInterface
     val currentLocation: String?
@@ -33,7 +34,7 @@ public abstract class BaseJSBridgeActivity : AppCompatActivity() {
 
     @get:JavascriptInterface
     val language: String
-        get() = "preferenceUtility.getKey(language)"
+        get() = "Here Your Object"
 
     @JavascriptInterface
     fun setLanguage(language: String): String {
@@ -42,7 +43,7 @@ public abstract class BaseJSBridgeActivity : AppCompatActivity() {
 
     @Synchronized
     protected fun evaluateJavascript(webView: WebView, jsFunctionName: String, o: Any?) {
-        val javaScript = "javascript:" + jsFunctionName + "(" + Gson().toJson(o) + ")"
+        val javaScript = "javascript: $jsFunctionName( ${Gson().toJson(o)})"
         Log.i(TAG, javaScript)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             webView.evaluateJavascript(javaScript, null)
@@ -83,7 +84,7 @@ public abstract class BaseJSBridgeActivity : AppCompatActivity() {
         return java.lang.String.format(
             Locale.US,
             "%s/%s (Android %s; %s; %s %s; %s)",
-            "Shohoz User",
+            "Your App Name",
             "00.1",
             Build.VERSION.RELEASE,
             Build.MODEL,
@@ -91,12 +92,5 @@ public abstract class BaseJSBridgeActivity : AppCompatActivity() {
             Build.DEVICE,
             Locale.getDefault().language
         )
-    }
-
-    companion object {
-        private const val TAG = "BaseJSBridgeActivity"
-        private const val IAM_AUTH_SERVICE = "iam"
-        private const val RIDES_AUTH_SERVICE = "rides"
-        private val locks: Lock = ReentrantLock()
     }
 }

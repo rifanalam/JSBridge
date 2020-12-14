@@ -67,7 +67,7 @@ class MainJSBridgeActivity : BaseJSBridgeActivity() {
 
         override fun onPageFinished(view: WebView, url: String) {
 //            injectJSInterface(view, JS_URL);
-            evaluateJavascript(view, "shohozPWA.setSuperAppData", "{\"ads_id\":\"3156a5f7-c727-4f87-b6b5-7f9a527be392\",\"fcm_token\":\"ezlm2aeHQm-dRPMUfW1H9E:APA91bENE5dHzJrutCKJZAAVszIhuaAY4uE-3uiIKJuZ4GaB7-lsoIj1C0uCzdeZrTKWNy3VCymxADPTFPkw4EoE4RhlI4jG9MTQAzRYD_dE1qLGqV2qhKcla_k19GOu--IGagzgP7kq\",\"language\":\"en\",\"platform\":\"android\",\"user_agent\":\"Shohoz User/3.1.1 (Android 11; Pixel 3; google blueline; en)\"}")
+            evaluateJavascript(view, "shohozPWA.setSuperAppData", appData())
         }
 
         fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

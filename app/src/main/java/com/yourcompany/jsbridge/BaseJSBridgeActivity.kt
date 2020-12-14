@@ -1,5 +1,6 @@
 package com.yourcompany.jsbridge
 
+import android.icu.util.ULocale.getLanguage
 import android.os.Build
 import android.util.Log
 import android.webkit.JavascriptInterface
@@ -7,8 +8,6 @@ import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import java.util.*
-import java.util.concurrent.locks.Lock
-import java.util.concurrent.locks.ReentrantLock
 
 private const val TAG = "BaseJSBridgeActivity"
 abstract class BaseJSBridgeActivity : AppCompatActivity() {
@@ -92,5 +91,9 @@ abstract class BaseJSBridgeActivity : AppCompatActivity() {
             Build.DEVICE,
             Locale.getDefault().language
         )
+    }
+
+    protected open fun appData(): AppDataModel? {
+        return AppDataModel("ezlm2aeHQm-dRPMUfW1H9E:APA91bENE5dHzJrutCKJZAAVszIhuaAY4uE-3uiIKJuZ4GaB7-lsoIj1C0uCzdeZrTKWNy3VCymxADPTFPkw4EoE4RhlI4jG9MTQAzRYD_dE1qLGqV2qhKcla_k19GOu--IGagzgP7kq", "3156a5f7-c727-4f87-b6b5-7f9a527be392", UserAgentInterceptor(), "en", "android")
     }
 }
